@@ -7,6 +7,6 @@ export default async function handler(
 ) {
   const emailAdress: string | string[] = req.query.email;
   const vote: string | string[] = req.query.vote;
-  res.status(200).json({ statusCode: 200, msg: "Thanks for your vote!" });
+  res.status(200).redirect("http://localhost:3000/thanks");
   console.log(`User: ${emailAdress} gave us: ${vote}`);
 }
