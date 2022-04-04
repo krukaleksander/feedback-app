@@ -7,19 +7,18 @@ import { green, red } from "@mui/material/colors";
 import { IResponse } from "../interface/IResponse";
 import { SendForm } from "../api/sendForm";
 import styles from "../styles/Home.module.css";
+import { Heading } from "./components/Heading";
 
 const Home: NextPage = () => {
   const [email, setEmail] = useState<string>("");
   const [responseData, setResponseData] = useState<IResponse | null>(null);
-  const [isSent, setIsSent] = useState<boolean>(false);
 
   const sendForm = async () => {
     const res = await new SendForm(email).send({ body: { email: email } });
     setResponseData(res);
-    console.log(res);
   };
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail((e.target as HTMLInputElement).value);
   };
 
@@ -45,12 +44,8 @@ const Home: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <>
-          <Typography sx={{ my: 3 }} component="h1" variant="h3">
-            Eager to share your views about the workshops?
-          </Typography>
-          <Typography sx={{ mx: 2 }} component="h2" variant="h6">
-            Provide your email in the field below to receive a short survey:
-          </Typography>
+        <Heading component={'h3'} content={'Eager to share your views about the workshops?'}/>
+        <Heading component={'h5'} content={'Provide your email in the field below to receive a short survey:'}/>
           <form
             className={styles.form}
             method="POST"
@@ -68,7 +63,7 @@ const Home: NextPage = () => {
                 onEnterPress(e)
               }
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                handleInput(e)
+                onInput(e)
               }
               id="email"
               value={email}
