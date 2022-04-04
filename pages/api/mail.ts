@@ -1,11 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from "next";
-import { IResponse } from "../../interface/IResponse";
-import { generateHTML } from "../../helpers/generateHTML";
-import { sendMessageToUser } from "../../helpers/sendMessageToUser";
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { IResponse } from '../../interface/IResponse';
+import { generateHTML } from '../../helpers/generateHTML';
+import { sendMessageToUser } from '../../helpers/sendMessageToUser';
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<IResponse>
+  res: NextApiResponse<IResponse>,
 ) {
   const emailAdress: string = req.body.email;
   try {

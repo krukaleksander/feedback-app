@@ -1,15 +1,15 @@
-import { Box, Button, Input, Typography } from "@mui/material";
-import type { NextPage } from "next";
-import Head from "next/head";
-import { useState } from "react";
-import { green, red } from "@mui/material/colors";
+import { Box, Button, Input, Typography } from '@mui/material';
+import type { NextPage } from 'next';
+import Head from 'next/head';
+import { useState } from 'react';
+import { green, red } from '@mui/material/colors';
 
-import { IResponse } from "../interface/IResponse";
-import { MockForm } from "../test/mockSendForm";
-import styles from "../styles/Home.module.css";
+import { IResponse } from '../interface/IResponse';
+import { MockForm } from '../test/mockSendForm';
+import styles from '../styles/Home.module.css';
 
 const Home: NextPage = () => {
-  const [email, setEmail] = useState<string>("");
+  const [email, setEmail] = useState<string>('');
   const [responseData, setResponseData] = useState<IResponse | null>(null);
   const [isSent, setIsSent] = useState<boolean>(false);
 
@@ -24,14 +24,14 @@ const Home: NextPage = () => {
   };
 
   const onEnterPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       e.preventDefault();
       sendForm();
     }
   };
 
   const onSubmit = (
-    e: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLFormElement>
+    e: React.MouseEvent<HTMLButtonElement> | React.FormEvent<HTMLFormElement>,
   ) => {
     e.preventDefault();
     sendForm();
@@ -59,10 +59,10 @@ const Home: NextPage = () => {
             <Input
               sx={{
                 my: 2,
-                textAlign: "center",
-                height: "3rem",
-                minWidth: "20rem",
-                borderRadius: "0.5rem",
+                textAlign: 'center',
+                height: '3rem',
+                minWidth: '20rem',
+                borderRadius: '0.5rem',
               }}
               onKeyPress={(e: React.KeyboardEvent<HTMLInputElement>) =>
                 onEnterPress(e)
@@ -79,15 +79,15 @@ const Home: NextPage = () => {
               SUBMIT
             </Button>
           </form>
-          <Box sx={{ textAlign: "center" }}>
+          <Box sx={{ textAlign: 'center' }}>
             {responseData?.statusCode === 200 && (
               <Typography variant="h6" sx={{ color: green[500] }}>
-                {responseData?.msg || ""}
+                {responseData?.msg || ''}
               </Typography>
             )}
             {responseData?.statusCode === 500 && (
               <Typography variant="h6" sx={{ color: red[500] }}>
-                {responseData?.msg || ""}
+                {responseData?.msg || ''}
               </Typography>
             )}
           </Box>

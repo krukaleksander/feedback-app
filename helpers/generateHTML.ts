@@ -1,5 +1,5 @@
-import { compile } from "handlebars";
-import mjml2html from "mjml";
+import { compile } from 'handlebars';
+import mjml2html from 'mjml';
 export function generateHTML(mail: string) {
   const template = compile(`
 <mjml>
