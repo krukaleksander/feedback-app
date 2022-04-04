@@ -13,7 +13,7 @@ export function generateHTML(mail: string) {
                 <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Rate our bootcamp</mj-text>
 
                 <mj-text>
-                    <form action="http://localhost:3000/api/vote" method="GET">
+                    <form action="http://localhost:3000/api/vote?email=${mail}" method="GET">
                         <mj-text align="center" font-size="16px" color="#F45E43">Rate workshop</mj-text>
 
                         <div>
