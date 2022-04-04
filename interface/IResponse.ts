@@ -1,4 +1,4 @@
-export default interface IResponse {
+export interface IResponse {
   statusCode: number;
   msg: string;
 }
