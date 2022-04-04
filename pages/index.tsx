@@ -2,6 +2,7 @@ import { Box, Button, Input, Typography } from "@mui/material";
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
+import { green, red } from "@mui/material/colors";
 
 import { IResponse } from "../interface/IResponse";
 import { MockForm } from "../test/mockSendForm";
@@ -78,6 +79,18 @@ const Home: NextPage = () => {
               SUBMIT
             </Button>
           </form>
+          <Box sx={{ textAlign: "center" }}>
+            {responseData?.statusCode === 200 && (
+              <Typography variant="h6" sx={{ color: green[500] }}>
+                {responseData?.msg || ""}
+              </Typography>
+            )}
+            {responseData?.statusCode === 500 && (
+              <Typography variant="h6" sx={{ color: red[500] }}>
+                {responseData?.msg || ""}
+              </Typography>
+            )}
+          </Box>
         </>
       </main>
     </div>
