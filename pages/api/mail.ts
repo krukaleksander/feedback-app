@@ -8,12 +8,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<IResponse>
 ) {
-  const emailAdress = req.body.email;
-
+  const emailAdress: string = req.body.email;
   const options = {
     apiKey: process.env.API_KEY,
   };
-
   try {
     let transporter = nodemailer.createTransport(sgTransport(options));
 
@@ -24,8 +22,14 @@ export default async function handler(
       text: "Hello world?",
       html: "<b>Hello world?</b>",
     });
-    res.status(200).json({ statusCode: 200, msg: "Email sent successfully" });
+    res.status(200).json({
+      statusCode: 200,
+      msg: `Email sent successfully to ${emailAdress}`,
+    });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      statusCode: 500,
+      msg: `Error: ${error}`,
+    });
   }
 }
