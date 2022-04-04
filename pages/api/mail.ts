@@ -14,7 +14,6 @@ export default async function handler(
   };
   try {
     let transporter = nodemailer.createTransport(sgTransport(options));
-
     let info = await transporter.sendMail({
       from: "aleksander@korzystnaenergia.pl",
       to: emailAdress,
@@ -22,8 +21,8 @@ export default async function handler(
       text: "Hello world?",
       html: "<b>Hello world?</b>",
     });
-    res.status(200).json({
-      statusCode: 200,
+    res.status(202).json({
+      statusCode: 202,
       msg: `Email sent successfully to ${emailAdress}`,
     });
   } catch (error) {
