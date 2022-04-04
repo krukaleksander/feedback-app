@@ -5,7 +5,7 @@ import { useState } from "react";
 import { green, red } from "@mui/material/colors";
 
 import { IResponse } from "../interface/IResponse";
-import { MockForm } from "../test/mockSendForm";
+import { SendForm } from "../api/sendForm";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   const [isSent, setIsSent] = useState<boolean>(false);
 
   const sendForm = async () => {
-    const res = await new MockForm(email).send({ body: { email: email } });
+    const res = await new SendForm(email).send({ body: { email: email } });
     setResponseData(res);
     console.log(res);
   };
