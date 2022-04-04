@@ -9,11 +9,11 @@
         <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Rate our bootcamp</mj-text>
 
         <mj-text align="center" font-size="16px" color="#F45E43">
-          <a href="#1" color="#F45E43">1</a>
-          <a href="#2" color="#F45E43">2</a>
-          <a href="#3" color="#F45E43">3</a>
-          <a href="#4" color="#F45E43">4</a>
-          <a href="#5" color="#F45E43">5</a>
+          <a href="http://localhost:3000/api/vote/?email=aleksander@korzystnaenergia.pl&vote=1" color="#F45E43">1</a>
+          <a href="http://localhost:3000/api/vote/?email=aleksander@korzystnaenergia.pl&vote=2" color="#F45E43">2</a>
+          <a href="http://localhost:3000/api/vote/?email=aleksander@korzystnaenergia.pl&vote=3" color="#F45E43">3</a>
+          <a href="http://localhost:3000/api/vote/?email=aleksander@korzystnaenergia.pl&vote=4" color="#F45E43">4</a>
+          <a href="http://localhost:3000/api/vote/?email=aleksander@korzystnaenergia.pl&vote=5" color="#F45E43">5</a>
         </mj-text>
       </mj-column>
     </mj-section>
