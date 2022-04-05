@@ -1,10 +1,29 @@
-
-type AnswerRange = 1 | 2 | 3 | 4 | 5;
+export type AnswerRange = 1 | 2 | 3 | 4 | 5;
 
 interface IQuestion {
-    questionText: string;
-    answer: AnswerRange;
-};
+  questionText: string;
+  answers: AnswerRange;
+  id: number;
+  choice: number;
+}
 
-type Questionnaire = IQuestion[];
+type ExtractedQuestion = Extract<IQuestion, "id" | "choice">;
 
+export interface IQuestionnaire {
+  questions: IQuestion[];
+  id: string;
+}
+
+export interface IRequest {
+  email: string;
+  questions: Extract<IQuestion, "id" | "choice">[];
+}
+
+export interface IResponse {
+  message: string;
+}
+
+export interface IApi {
+  submitQuestionnaire(request: IRequest): Promise<IResponse>;
+  getQuestionnaire(id: string): Promise<IQuestionnaire>;
+}
