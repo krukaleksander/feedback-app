@@ -2,7 +2,6 @@ export type AnswerRange = 1 | 2 | 3 | 4 | 5;
 
 interface IQuestion {
   questionText: string;
-  answers: AnswerRange;
   id: number;
   choice: number;
 }
