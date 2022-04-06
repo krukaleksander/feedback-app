@@ -11,7 +11,7 @@ class Request {
   }
 }
 
-test("email is valid", async () => {
+test.skip("email is valid", async () => {
   const request = new Request("aleksander@korzystnaenergia.pl", {
     id: "axyz",
     questions: [{ questionText: "tak?", id: 23, choice: 3 }],
