@@ -1,15 +1,5 @@
-import { IsEmail, IsString, validate } from "class-validator";
-
-class Answer {}
-
-class Request {
-  @IsString()
-  @IsEmail()
-  email!: string;
-
-  @IsString({ each: true })
-  answers!: string[];
-}
+import { validate } from "class-validator";
+import { Answer, Request } from "../dtos/request";
 
 function generateRequest(overrides: { email?: any; answers?: any }) {
   const request = new Request();
@@ -27,26 +17,47 @@ test("passes with correct request", async () => {
 
 test("fails without email", async () => {
   const request = generateRequest({ email: null });
-  expect(await validate(request)).toMatchSnapshot();
+  expect(await validate(request)).toEqual([
+    expect.objectContaining({
+      constraints: {
+        isEmail: "email must be an email",
+        isString: "email must be a string",
+      },
+      property: "email",
+    }),
+  ]);
 });
 
 test("fails with incorrect email", async () => {
   const request = generateRequest({ email: "mihaugmail.com" });
-  expect(await validate(request)).toMatchSnapshot();
+  expect(await validate(request)).toEqual([
+    expect.objectContaining({
+      constraints: {
+        isEmail: "email must be an email",
+      },
+      property: "email",
+    }),
+  ]);
 });
 
 test("fails with empty answers", async () => {
   const request = generateRequest({ answers: null });
-  expect(await validate(request)).toMatchSnapshot();
+  expect(await validate(request)).toEqual([
+    expect.objectContaining({
+      children: [
+        expect.objectContaining({
+          constraints: {
+            nestedValidation:
+              "each value in nested property answers must be either object or array",
+          },
+          property: "answers",
+        }),
+      ],
+    }),
+  ]);
 });
 
-class ValidateEmail {
-  @IsEmail()
-  email!: string;
-}
-
-test("passed email is not an email", async () => {
-  const emailValidation = new ValidateEmail();
-  emailValidation.email = "aaaa";
-  await validate(emailValidation).then((err) => console.log(err));
+test("fails with incorrect answer", async () => {
+  const request = generateRequest({ answers: [new Answer()] });
+  expect(await validate(request)).toMatchSnapshot();
 });
